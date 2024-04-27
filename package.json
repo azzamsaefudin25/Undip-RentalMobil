@@ -2,5 +2,8 @@
   "scripts": {
     "generate": "./did.sh && dfx generate",
     "gen-deploy": "./did.sh && dfx generate && dfx deploy -y"
+  },
+  "dependencies": {
+    "download": "^8.0.0"
   }
 }

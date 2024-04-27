@@ -1,3 +1,23 @@
+type Error = variant { NotFound : record { msg : text } };
+type RentalRequest = record {
+  id : nat64;
+  status : text;
+  requester : text;
+  end_time : nat64;
+  start_time : nat64;
+  car_model : text;
+};
+type RentalRequestPayload = record {
+  requester : text;
+  end_time : nat64;
+  start_time : nat64;
+  car_model : text;
+};
+type Result = variant { Ok : RentalRequest; Err : Error };
 service : {
-    "greet": (text) -> (text) query;
+  approve_rental_request : (nat64) -> (Result);
+  create_rental_request : (RentalRequestPayload) -> (opt RentalRequest);
+  get_rental_request : (nat64) -> (Result) query;
+  reject_rental_request : (nat64) -> (Result);
+  return_car : (nat64) -> (Result);
 }
